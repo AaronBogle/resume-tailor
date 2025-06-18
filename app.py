@@ -16,6 +16,7 @@ Given a base resume and a job description, your job is to:
 
 IMPORTANT: ONLY output the following formatted response.  
 DO NOT add any explanations, questions, or extra commentary.
+Output must be in the following format. This is not a discussion.
 
 Format your response exactly as in this example:
 
