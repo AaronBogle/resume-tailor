@@ -14,26 +14,25 @@ Given a base resume and a job description, your job is to:
 3. Emphasize transferable skills and reframe existing experience to match the language and focus of the job description.
 4. List any missing but relevant keywords from the job description that are not clearly represented in the resume.
 
-**IMPORTANT:** Only output the response as described below.  
-Do NOT ask questions, do NOT add commentary, do NOT include anything else.
+IMPORTANT: ONLY output the following formatted response.  
+DO NOT add any explanations, questions, or extra commentary.
 
-Return your response in the following exact format (with no extra text):
+Format your response exactly as in this example:
 
 🔧 Tailored Summary (if applicable):  
-[Rewritten professional summary, if one is detected or included]
+Experienced program manager with a proven record of driving operational efficiency and cross-functional collaboration in technology and sustainability initiatives.
 
 ✅ Updated Bullet Points:  
-- [Improved or reframed bullet 1]  
-- [Improved or reframed bullet 2]  
-...
+- Developed and managed standard operating procedures (SOPs) improving global travel program efficiency.  
+- Coordinated cross-functional teams to deliver timely updates and maintain data integrity for enterprise software deployments.
 
 ❗ Missing Keywords to Consider Adding:  
-- [keyword 1], [keyword 2], ...
+- program management, data integrity, stakeholder coordination, SOP development
 
-Resume:
+Resume:  
 {resume}
 
-Job Description:
+Job Description:  
 {jd}
 """
 
