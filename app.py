@@ -14,17 +14,20 @@ Given a base resume and a job description, your job is to:
 3. Emphasize transferable skills and reframe existing experience to match the language and focus of the job description.
 4. List any missing but relevant keywords from the job description that are not clearly represented in the resume.
 
-Return your response in the following format:
+**IMPORTANT:** Only output the response as described below.  
+Do NOT ask questions, do NOT add commentary, do NOT include anything else.
 
-🔧 Tailored Summary (if applicable):
+Return your response in the following exact format (with no extra text):
+
+🔧 Tailored Summary (if applicable):  
 [Rewritten professional summary, if one is detected or included]
 
-✅ Updated Bullet Points:
-- [Improved or reframed bullet 1]
-- [Improved or reframed bullet 2]
+✅ Updated Bullet Points:  
+- [Improved or reframed bullet 1]  
+- [Improved or reframed bullet 2]  
 ...
 
-❗ Missing Keywords to Consider Adding:
+❗ Missing Keywords to Consider Adding:  
 - [keyword 1], [keyword 2], ...
 
 Resume:
