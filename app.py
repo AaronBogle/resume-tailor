@@ -1,8 +1,7 @@
 import streamlit as st
 import requests
-import os
 
-# Set your Hugging Face API token in Streamlit Secrets or directly here (for local testing only)
+# Set Hugging Face Zephyr model URL
 API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
 headers = {"Authorization": f"Bearer {st.secrets['hf_api_key']}"} if 'hf_api_key' in st.secrets else {}
 
@@ -17,7 +16,16 @@ Given a base resume and a job description, your job is to:
 
 Return your response in the following format:
 
-\n\n🔧 Tailored Summary (if applicable):\n[Rewritten professional summary, if one is detected or included]\n\n✅ Updated Bullet Points:\n- [Improved or reframed bullet 1]\n- [Improved or reframed bullet 2]\n...\n\n❗ Missing Keywords to Consider Adding:\n- [keyword 1], [keyword 2], ...
+🔧 Tailored Summary (if applicable):
+[Rewritten professional summary, if one is detected or included]
+
+✅ Updated Bullet Points:
+- [Improved or reframed bullet 1]
+- [Improved or reframed bullet 2]
+...
+
+❗ Missing Keywords to Consider Adding:
+- [keyword 1], [keyword 2], ...
 
 Resume:
 {resume}
@@ -38,15 +46,20 @@ if st.button("Tailor My Resume"):
     elif resume_text and job_description:
         with st.spinner("Tailoring your resume..."):
             full_prompt = prompt_template.format(resume=resume_text, jd=job_description)
-
-            response = requests.post(API_URL, headers=headers, json={"inputs": full_prompt})
+            response = requests.post(API_URL, headers=headers, json={
+                "inputs": full_prompt,
+                "parameters": {
+                    "max_new_tokens": 500,
+                    "return_full_text": False
+                }
+            })
             if response.status_code == 200:
                 output = response.json()
-                if isinstance(output, list):
+                if isinstance(output, list) and "generated_text" in output[0]:
                     st.markdown("### ✨ Tailored Resume Suggestions")
-                    st.markdown(output[0]["generated_text"])  # handle HF response structure
+                    st.markdown(output[0]["generated_text"])
                 else:
-                    st.error("Unexpected output format from model.")
+                    st.error("Unexpected response structure from model.")
             else:
                 st.error(f"Error from Hugging Face API: {response.status_code}\n{response.text}")
     else:
