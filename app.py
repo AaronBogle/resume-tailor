@@ -3,7 +3,7 @@ import requests
 import os
 
 # Set your Hugging Face API token in Streamlit Secrets or directly here (for local testing only)
-API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1"
+API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
 headers = {"Authorization": f"Bearer {st.secrets['hf_api_key']}"} if 'hf_api_key' in st.secrets else {}
 
 prompt_template = """
